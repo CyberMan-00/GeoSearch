@@ -1,0 +1,21 @@
+.search-price {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.search-file {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 30px;
+}
+
+.search-file__document {
+    width: 15px;
+    /* height: 35px; */
+}
+
+/* .search-price__min {
+    background: var(--color-ui-warn)
+} */

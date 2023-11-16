@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ExtensionTemplate</title>
+    <link rel="stylesheet" href="css/popup.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>This template is made for extensions development</h1>
+    <h2>Example title</h2>
+    <p>Find products you need.</p>
+
+    <form id='extention' action="#">
+        <h3>Set product title or keywords</h3>
+        <input placeholder="exact title match" type="text" class="search-title">
+        <!-- TO DO: add exact match checkbox -->
+        <h3>Set min and max price</h3>
+        <div class="search-price">
+            <input placeholder="min. price" type="text" class="search-price__min">
+            <input placeholder="max. price" type="text" class="search-price__max">
+        </div>
+
+        <h3>Set a file type</h3>
+        <div class="search-file">
+            <div>
+                <input type="radio" name="answer" value="pdf" class="search-file__document">
+                <label for="pdf">pdf</label>
+            </div>
+            <div>
+                <input type="radio" name="answer" value="doc" class="search-file__document">
+                <label for="doc">doc</label>
+            </div>
+            <div>
+                <input type="radio" name="answer" value="xls" class="search-file__document">
+                <label for="xls">xls</label>
+            </div>
+            <div>
+                <input type="radio" name="answer" value="ppt" class="search-file__document">
+                <label for="ppt">ppt</label>
+            </div>
+        </div>
+
+        <button id="geoSearchBtn">Search now!</button>
+    </form>
+
+    <script defer src="js/popup.js"></script>
+</body>
+
+</html>
