@@ -1,6 +1,6 @@
 {
-    "name": "ExtensionTemplate",
-    "description": "Description of the extension",
+    "name": "GeoSearch",
+    "description": "Google products simultaniously",
     "version": "1.0",
     "manifest_version": 3,
     "icons": {
