@@ -1,21 +1,42 @@
+.section-cell {
+    margin: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.search-title__checkbox {
+    width: 15px;
+}
+
+.flex_jc-sb_ai-c {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.flex_ai-c {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
 .search-price {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
-    margin: 8px 0;
+    gap: 10px;
 }
 
 .search-file {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     gap: 30px;
 }
 
 .search-file__document {
     width: 15px;
-    /* height: 35px; */
+    border: none;
 }
-
-/* .search-price__min {
-    background: var(--color-ui-warn)
-} */

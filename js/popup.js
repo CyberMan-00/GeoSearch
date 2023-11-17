@@ -11,23 +11,60 @@ const locations = [
 
 const geoSearchBtn = document.querySelector('#geoSearchBtn');
 
-geoSearchBtn.addEventListener('click', function () {
+geoSearchBtn.addEventListener('click', function (event) {
+    event.preventDefault()
 
     locations.forEach((item) => {
-        let itemAllWords = document.querySelector('.search-title').value;
-        let itemMinPriceValue = document.querySelector('.search-price__min').value
-        let itemMaxPriceValue = document.querySelector('.search-price__max').value
         let query;
         let url;
 
-        let currencySign = { euro: '€' }
-        let noneOfWords = 'amazon'
+        // exact match checkbox
+        let itemExactWords = '';
+        let itemAllWords = document.querySelector('.search-title').value;
+        let itemExactWordsCheckbox = document.querySelector('#strictMatch')
+        if (itemExactWordsCheckbox.checked === true) {
+            itemExactWords = itemAllWords
+        }
 
-        // TO DO: add exact match checkbox
-        let itemExactWords = ['', itemAllWords]
+        let noneOfWords = '';
+        let excludeAmazon = document.querySelector('#excludeAmazon')
+        if (excludeAmazon.checked === true) {
+            noneOfWords = 'amazon';
+        }
+
+        // set price
+        let currencySign = { euro: '€' };
+        let itemMinPriceValue = document.querySelector('.search-price__min').value
+        let itemMaxPriceValue = document.querySelector('.search-price__max').value
+        switch (true) {
+            case (itemMinPriceValue != '' && itemMaxPriceValue != ''):
+                query = `${itemAllWords} AND price ${itemMinPriceValue}${currencySign.euro}..${itemMaxPriceValue}${currencySign.euro}`;
+                break;
+            case (itemMinPriceValue != '' && itemMaxPriceValue === ''):
+                query = `${itemAllWords} AND price > ${itemMinPriceValue}${currencySign.euro}`;
+                break;
+            case (itemMinPriceValue === '' && itemMaxPriceValue != ''):
+                query = `${itemAllWords} AND price < ${itemMaxPriceValue}${currencySign.euro}`;
+                break;
+            default:
+                query = `${itemAllWords}`;
+        }
+
+        // set website search
+        let websiteLink = '';
+        let websiteSearch = document.querySelector('.search-website').value
+        switch (true) {
+            case (websiteSearch != ''):
+                websiteLink = websiteSearch
+                websiteLink = websiteLink.trim()
+                break;
+            default:
+                websiteLink = '';
+                break;
+        }
 
         // set a file type
-        let fileType;
+        let fileType = '';
         let fileTypeRadios = document.querySelectorAll('.search-file__document')
         fileTypeRadios.forEach((radio) => {
             if (radio.checked === true) {
@@ -35,23 +72,9 @@ geoSearchBtn.addEventListener('click', function () {
             }
         })
 
-        // search query
-        if (itemMinPriceValue != '' && itemMaxPriceValue != '') {
-            query = ` ${itemAllWords} AND price ${itemMinPriceValue}${currencySign.euro}..${itemMaxPriceValue}${currencySign.euro} `
-            url = `${item.url}/search?q=${query}&as_epq=${itemExactWords[0]}&as_eq=${noneOfWords}&lr=lang_${item.languages[0]}&cr=country${item.code.toUpperCase()}&as_filetype=${fileType}`
+        query = query.trim();
 
-        } else if (itemMinPriceValue != '' && itemMaxPriceValue === '') {
-            query = ` ${itemAllWords} AND price > ${itemMinPriceValue}${currencySign.euro} `
-            url = `${item.url}/search?q=${query}&as_epq=${itemExactWords[0]}&as_eq=${noneOfWords}&lr=lang_${item.languages[0]}&cr=country${item.code.toUpperCase()}&as_filetype=${fileType}`
-
-        } else if (itemMinPriceValue === '' && itemMaxPriceValue != '') {
-            query = ` ${itemAllWords} AND price < ${itemMaxPriceValue}${currencySign.euro} `
-            url = `${item.url}/search?q=${query}&as_epq=${itemExactWords[0]}&as_eq=${noneOfWords}&lr=lang_${item.languages[0]}&cr=country${item.code.toUpperCase()}&as_filetype=${fileType}`
-        } else {
-            query = ` "${itemAllWords}" `
-            url = `${item.url}/search?q=${query}&as_epq=${itemExactWords[0]}&as_eq=${noneOfWords}&lr=lang_${item.languages[0]}&cr=country${item.code.toUpperCase()}&as_filetype=${fileType}`
-        }
-
+        url = `${item.url}/search?q=${query}&as_epq=${itemExactWords}&as_eq=${noneOfWords}&lr=lang_${item.languages[0]}&cr=country${item.code.toUpperCase()}&as_sitesearch=${websiteLink}&as_filetype=${fileType}`;
         // let url = `${item.url}/webhp?hl=${item.languages[1]}&gl=${item.code}&q=${query}`
         openInNewTab(url);
     })
