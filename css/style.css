@@ -5,8 +5,35 @@
     gap: 10px;
 }
 
+.logo {
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.search-geo__checkbox {
+    width: 15px;
+}
+
 .search-title__checkbox {
     width: 15px;
+}
+
+.search-geo__unselect {
+    padding: 8px;
+}
+
+
+.span__brand {
+    color: var(--color-brand-primary)
 }
 
 .flex_jc-sb_ai-c {

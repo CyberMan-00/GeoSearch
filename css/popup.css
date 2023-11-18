@@ -8,6 +8,9 @@
     --color-canvas-inverted: #2f184b;
     --color-canvas-secondary: #f2ebfb;
 
+    --color-gradient-primary: radial-gradient(circle, rgba(212, 187, 252, 1) 0%, rgba(150, 103, 224, 1) 100%);
+    --color-gradient-inverted: linear-gradient(45deg, #f4effa 0%, #2f184b 79%);
+
     --color-brand-primary: #9667e0;
     --color-brand-secondary: #d4bbfc;
     --color-brand-tertiary: #EB5E28;
@@ -31,6 +34,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: all 0.5s;
+
 }
 
 h1 {
@@ -49,7 +54,12 @@ p {
     margin-bottom: 8px;
 }
 
+hr {
+    margin: 16px 0;
+}
+
 body {
+    position: relative;
     min-width: 350px;
     padding: 16px;
     background: var(--color-canvas-primary)
@@ -72,8 +82,8 @@ input:hover::placeholder {
 }
 
 button {
-    /* width: fit-content; */
-    width: 100%;
+    width: fit-content;
+    /* width: 100%; */
     padding: 8px 24px;
     border: none;
     border-radius: 15px;
@@ -81,6 +91,7 @@ button {
     background: var(--color-button-primary);
     color: var(--color-text-inverted);
     cursor: pointer;
+
 
 }
 

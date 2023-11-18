@@ -1,31 +1,70 @@
 'use strict'
 
-const locations = [
-    { name: 'United States', url: 'https://www.google.com', code: 'us', languages: ['en', 'en'] },
-    { name: 'United Kingdom', url: 'https://www.google.co.uk', code: 'uk', languages: ['en', 'en'] },
-    { name: 'France', url: 'https://www.google.fr', code: 'fr', languages: ['fr', 'en'] },
-    { name: 'Italy', url: 'https://www.google.it', code: 'it', languages: ['it', 'en'] },
-    { name: 'Spain', url: 'https://www.google.es', code: 'es', languages: ['es', 'en'] },
-    { name: 'Germany', url: 'https://www.google.de', code: 'de', languages: ['de', 'en'] },
+const locationsConfig = [
+    { name: 'United States', url: 'https://www.google.com', code: 'us', languages: ['en', 'en'], alias: 'com' },
+    { name: 'United Kingdom', url: 'https://www.google.co.uk', code: 'uk', languages: ['en', 'en'], alias: 'couk' },
+    { name: 'France', url: 'https://www.google.fr', code: 'fr', languages: ['fr', 'en'], alias: 'fr' },
+    { name: 'Italy', url: 'https://www.google.it', code: 'it', languages: ['it', 'en'], alias: 'it' },
+    { name: 'Spain', url: 'https://www.google.es', code: 'es', languages: ['es', 'en'], alias: 'es' },
+    { name: 'Germany', url: 'https://www.google.de', code: 'de', languages: ['de', 'en'], alias: 'de' },
 ]
 
 const geoSearchBtn = document.querySelector('#geoSearchBtn');
 
+
+// bug: need to click twice to unselect boxes
+// const geoUnselect = document.querySelector('.search-geo__unselect')
+// geoUnselect.addEventListener('click', () => {
+//     let geoSearchCheckboxes = document.querySelectorAll('.search-geo__checkbox')
+//     geoSearchCheckboxes.forEach((checkbox) => {
+//         checkbox.checked = false;
+//     })
+// })
+
+
+
 geoSearchBtn.addEventListener('click', function (event) {
     event.preventDefault()
 
-    locations.forEach((item) => {
+    // geo search checkboxes
+    let geoSearchCheckboxes = document.querySelectorAll('.search-geo__checkbox')
+    let geoFrontier = [];
+    geoSearchCheckboxes.forEach((geo) => {
+        if (geo.checked === true) {
+            geoFrontier.push(geo)
+        }
+        return geoFrontier;
+    })
+
+    let geoSearchLocations = [];
+    geoFrontier.forEach((geo) => {
+        locationsConfig.forEach((location) => {
+            if (geo.value === location.alias) {
+                geoSearchLocations.push(location)
+            }
+            return geoSearchLocations;
+        })
+    })
+
+    if (geoSearchLocations.length === 0) {
+        console.log('empty geolocation checkbox detected')
+        return
+    }
+
+    // launch search engine logic
+    geoSearchLocations.forEach((item) => {
         let query;
         let url;
 
-        // exact match checkbox
+        // strict match checkbox
         let itemExactWords = '';
         let itemAllWords = document.querySelector('.search-title').value;
         let itemExactWordsCheckbox = document.querySelector('#strictMatch')
         if (itemExactWordsCheckbox.checked === true) {
-            itemExactWords = itemAllWords
+            itemExactWords = itemAllWords.trim()
         }
 
+        // exlude amazon
         let noneOfWords = '';
         let excludeAmazon = document.querySelector('#excludeAmazon')
         if (excludeAmazon.checked === true) {
@@ -73,9 +112,7 @@ geoSearchBtn.addEventListener('click', function (event) {
         })
 
         query = query.trim();
-
         url = `${item.url}/search?q=${query}&as_epq=${itemExactWords}&as_eq=${noneOfWords}&lr=lang_${item.languages[0]}&cr=country${item.code.toUpperCase()}&as_sitesearch=${websiteLink}&as_filetype=${fileType}`;
-        // let url = `${item.url}/webhp?hl=${item.languages[1]}&gl=${item.code}&q=${query}`
         openInNewTab(url);
     })
 });
