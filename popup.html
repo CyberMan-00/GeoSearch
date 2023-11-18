@@ -8,14 +8,47 @@
 </head>
 
 <body>
-    <!-- <h1>GS</h1> -->
-    <h2>Geo Search</h2>
-    <p>Find products you need.</p>
+    <a href="https://www.smartscout.com/blog/amazon-wholesale-guide" class="logo">
+        <img src="https://assets-global.website-files.com/5f5cc8ba1cb029d559cdb37a/618e8bbc0eccbac573e7e8aa_adpsy-icon.svg"
+            alt="logo">
+    </a>
+    <h2><span class="span__brand">Geo</span> Product <span class="span__brand">Search</span></h2>
+    <p>Improve your product suppliers search by geo googling</p>
 
     <form id='extention' action="#">
-        <h3>Set product title or keywords</h3>
+        <h3>Set geolocations</h3>
         <div class="section-cell">
-            <input placeholder="title" type="text" class="search-title">
+            <div class="flex_ai-c">
+                <input id="com" type="checkbox" name="answer" value="com" class="search-geo__checkbox" checked>
+                <label for="com">.com</label>
+            </div>
+            <div class="flex_ai-c">
+                <input id="couk" type="checkbox" name="answer" value="couk" class="search-geo__checkbox" checked>
+                <label for="couk">.co.uk</label>
+            </div>
+            <div class="flex_ai-c">
+                <input id="fr" type="checkbox" name="answer" value="fr" class="search-geo__checkbox" checked>
+                <label for="fr">.fr</label>
+            </div>
+            <div class="flex_ai-c">
+                <input id="it" type="checkbox" name="answer" value="it" class="search-geo__checkbox" checked>
+                <label for="it">.it</label>
+            </div>
+            <div class="flex_ai-c">
+                <input id="es" type="checkbox" name="answer" value="es" class="search-geo__checkbox" checked>
+                <label for="es">.es</label>
+            </div>
+            <div class="flex_ai-c">
+                <input id="de" type="checkbox" name="answer" value="de" class="search-geo__checkbox" checked>
+                <label for="de">.de</label>
+            </div>
+            <!-- select all unselect all buttons  -->
+            <!-- <button class="search-geo__unselect">-</button> -->
+        </div>
+
+        <h3>Set product title or search keywords</h3>
+        <div class="section-cell">
+            <input placeholder="product title or keywords" type="text" class="search-title">
             <div class="flex_ai-c">
                 <input id="strictMatch" type="checkbox" name="answer" value="strictMatch"
                     class="search-title__checkbox">
@@ -27,6 +60,7 @@
                 <label for="excludeAmazon">exclude amazon</label>
             </div>
         </div>
+
         <h3>Set min and max price</h3>
         <div class="section-cell">
             <div class="search-price">
@@ -34,6 +68,7 @@
                 <input placeholder="max. price" type="text" class="search-price__max">
             </div>
         </div>
+
         <h3>Set website search</h3>
         <div class="section-cell">
             <input placeholder="website" type="text" class="search-website">
@@ -66,7 +101,10 @@
         </div>
 
         <button id="geoSearchBtn">Search now!</button>
+
     </form>
+    <hr>
+    <p>This extention is an affiliate partner of smartscout. To maintain this extension free of charge.</p>
 
     <script defer src="js/popup.js"></script>
 </body>
