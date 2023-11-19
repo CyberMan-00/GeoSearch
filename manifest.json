@@ -13,7 +13,8 @@
     "permissions": [
         "tabs",
         "scripting",
-        "activeTab"
+        "activeTab",
+        "webRequest"
     ],
     "background": {}
 }

@@ -61,6 +61,7 @@ hr {
 body {
     position: relative;
     min-width: 350px;
+    /* height: 800px; */
     padding: 16px;
     background: var(--color-canvas-primary)
 }
