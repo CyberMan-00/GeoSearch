@@ -2,7 +2,7 @@
 
 const locationsConfig = [
     { name: 'United States', url: 'https://www.google.com', code: 'us', languages: ['en', 'en'], alias: 'com' },
-    { name: 'United Kingdom', url: 'https://www.google.co.uk', code: 'uk', languages: ['en', 'en'], alias: 'couk' },
+    { name: 'United Kingdom', url: 'https://www.google.co.uk', code: 'gb', languages: ['en', 'en'], alias: 'couk' },
     { name: 'France', url: 'https://www.google.fr', code: 'fr', languages: ['fr', 'en'], alias: 'fr' },
     { name: 'Italy', url: 'https://www.google.it', code: 'it', languages: ['it', 'en'], alias: 'it' },
     { name: 'Spain', url: 'https://www.google.es', code: 'es', languages: ['es', 'en'], alias: 'es' },
@@ -13,21 +13,32 @@ const geoSearchBtn = document.querySelector('#geoSearchBtn');
 
 
 // bug: need to click twice to unselect boxes
-// const geoUnselect = document.querySelector('.search-geo__unselect')
-// geoUnselect.addEventListener('click', () => {
-//     let geoSearchCheckboxes = document.querySelectorAll('.search-geo__checkbox')
-//     geoSearchCheckboxes.forEach((checkbox) => {
-//         checkbox.checked = false;
-//     })
-// })
+let geoSearchCheckboxes = document.querySelectorAll('.search-geo__checkbox')
+
+const geoUnselectAllBtn = document.querySelector('.search-geo__unselect')
+geoUnselectAllBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    geoSearchCheckboxes.forEach((checkbox) => {
+        if (checkbox.checked === true) {
+            checkbox.checked = false;
+        }
+    })
+})
+const geoSelectAllBtn = document.querySelector('.search-geo__select')
+geoSelectAllBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    geoSearchCheckboxes.forEach((checkbox) => {
+        if (checkbox.checked === false) {
+            checkbox.checked = true;
+        }
+    })
+})
 
 
-
-geoSearchBtn.addEventListener('click', function (event) {
-    event.preventDefault()
-
+geoSearchBtn.addEventListener('click', function (e) {
+    e.preventDefault()
     // geo search checkboxes
-    let geoSearchCheckboxes = document.querySelectorAll('.search-geo__checkbox')
+    geoSearchCheckboxes = document.querySelectorAll('.search-geo__checkbox')
     let geoFrontier = [];
     geoSearchCheckboxes.forEach((geo) => {
         if (geo.checked === true) {
@@ -112,7 +123,7 @@ geoSearchBtn.addEventListener('click', function (event) {
         })
 
         query = query.trim();
-        url = `${item.url}/search?q=${query}&as_epq=${itemExactWords}&as_eq=${noneOfWords}&lr=lang_${item.languages[0]}&cr=country${item.code.toUpperCase()}&as_sitesearch=${websiteLink}&as_filetype=${fileType}`;
+        url = `${item.url}/search?q=${query}&as_epq=${itemExactWords}&as_eq=${noneOfWords}&lr=lang_${item.languages[1]}&cr=country${item.code.toUpperCase()}&as_sitesearch=${websiteLink}&as_filetype=${fileType}`;
         openInNewTab(url);
     })
 });
@@ -136,3 +147,5 @@ function openInNewTab(url) {
 // &as_occt=any
 // &as_filetype=
 // &tbs=
+
+// https://www.google.es/search?hl=es-ES&as_q=toys&as_epq=&as_oq=&as_eq=&as_nlo=&as_nhi=&lr=&cr=countryES&as_qdr=all&as_sitesearch=&as_occt=any&as_filetype=&tbs=

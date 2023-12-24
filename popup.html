@@ -19,31 +19,33 @@
         <h3>Set geolocations</h3>
         <div class="section-cell">
             <div class="flex_ai-c">
-                <input id="com" type="checkbox" name="answer" value="com" class="search-geo__checkbox" checked>
+                <input id="com" type="checkbox" name="answer" value="com" class="search-geo__checkbox">
                 <label for="com">.com</label>
             </div>
             <div class="flex_ai-c">
-                <input id="couk" type="checkbox" name="answer" value="couk" class="search-geo__checkbox" checked>
+                <input id="couk" type="checkbox" name="answer" value="couk" class="search-geo__checkbox">
                 <label for="couk">.co.uk</label>
             </div>
             <div class="flex_ai-c">
-                <input id="fr" type="checkbox" name="answer" value="fr" class="search-geo__checkbox" checked>
+                <input id="fr" type="checkbox" name="answer" value="fr" class="search-geo__checkbox">
                 <label for="fr">.fr</label>
             </div>
             <div class="flex_ai-c">
-                <input id="it" type="checkbox" name="answer" value="it" class="search-geo__checkbox" checked>
+                <input id="it" type="checkbox" name="answer" value="it" class="search-geo__checkbox">
                 <label for="it">.it</label>
             </div>
             <div class="flex_ai-c">
-                <input id="es" type="checkbox" name="answer" value="es" class="search-geo__checkbox" checked>
+                <input id="es" type="checkbox" name="answer" value="es" class="search-geo__checkbox">
                 <label for="es">.es</label>
             </div>
             <div class="flex_ai-c">
-                <input id="de" type="checkbox" name="answer" value="de" class="search-geo__checkbox" checked>
+                <input id="de" type="checkbox" name="answer" value="de" class="search-geo__checkbox">
                 <label for="de">.de</label>
             </div>
-            <!-- select all unselect all buttons  -->
-            <!-- <button class="search-geo__unselect">-</button> -->
+            <!-- select all unselect all buttons -->
+            <br>
+            <button class="search-geo__unselect">- all</button>
+            <button class="search-geo__select">+ all</button>
         </div>
 
         <h3>Set product title or search keywords</h3>
@@ -99,12 +101,27 @@
                 </div>
             </div>
         </div>
+        <div class="section-cell">
+            <button id="geoSearchBtn">Google</button>
+            <!-- <button id="geoShoppingBtn">Google Shopping</button> -->
+        </div>
 
-        <button id="geoSearchBtn">Search now!</button>
 
     </form>
     <hr>
-    <p>This extention is an affiliate partner of smartscout. To maintain this extension free of charge.</p>
+    <p>
+        This extention is an affiliate partner of
+        <a href="https://www.smartscout.com/blog/amazon-wholesale-guide">
+            <strong>
+                <span class="span__brand">
+                    smartscout
+                </span>
+            </strong>
+        </a>.
+        <br>
+        Register using this <a href=""><span class="span__brand">link</span></a> to maintain this extension free of
+        charge.
+    </p>
 
     <script defer src="js/popup.js"></script>
 </body>
